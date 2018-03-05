@@ -4,6 +4,11 @@ import Webcam from './Webcam';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = { webcamSide: 512 }
+  }
+
   componentDidMount() {
     const video = this.refs.webcam.getVideo();
     start3D({ video });
@@ -13,7 +18,7 @@ class App extends Component {
     return (
         <div>
           <div id='webgl'/>
-          <Webcam ref='webcam'/>
+          <Webcam side={this.state.webcamSide} ref='webcam'/>
         </div>
     );
   }

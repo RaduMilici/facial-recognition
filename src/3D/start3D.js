@@ -7,14 +7,13 @@ const start = ({ video }) => {
     width: 512,
     height: 512,
     near: 0.1,
-    far: 1000,
+    far: 100,
     containerId: 'webgl',
   };
-
   application.init(settings);
-  application.camera.position.z = -10;
-  console.log(application.scene)
-  new VideoPlane({ video });
+  application.camera.position.z = 10;
+  const videoPlane = new VideoPlane({ video });
+  application.add(videoPlane);
 };
 
 export default start;

@@ -1,22 +1,27 @@
-import { PlaneBufferGeometry, MeshBasicMaterial, Mesh, VideoTexture } from 'three';
+import { BoxBufferGeometry, MeshBasicMaterial, Mesh, VideoTexture, NearestFilter, RGBFormat } from 'three';
 import { Entity } from 'ecs-three';
+import Rotate from './components/rotate';
 
 class VideoPlane extends Entity {
   constructor({ video }) {
     super();
     this.name = 'VideoPlane';
-    this.video = video;
-    this.makeMesh();
+    this.components = [Rotate];
+    this.makeMesh(video);
   }
 
-  makeMesh() {
-    const map = new VideoTexture(this.video);
-    const geometry = new PlaneBufferGeometry(16, 9);
-    const material = new MeshBasicMaterial({ color: 0xffffff, side: 2 });
+  makeMesh(video) {
+    const map = new VideoTexture(video);
+    map.minFilter = NearestFilter;
+    map.magFilter = NearestFilter;
+    map.format = RGBFormat;
+    const geometry = new BoxBufferGeometry(5, 5, 5);
+    const material = new MeshBasicMaterial({ map });
     this.mesh = new Mesh(geometry, material);
-    this.mesh.rotation.x += Math.PI / 2;
     this.add(this.mesh);
   }
+
+  dispatchEvent() {}
 }
 
 export default VideoPlane;
