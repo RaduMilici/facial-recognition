@@ -6,7 +6,7 @@ import './App.css';
 class App extends Component {
   constructor() {
     super();
-    this.state = { webcamSide: 512 }
+    this.state = { webcamSide: 128 }
   }
 
   componentDidMount() {

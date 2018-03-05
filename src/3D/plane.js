@@ -15,7 +15,8 @@ class VideoPlane extends Entity {
     map.minFilter = NearestFilter;
     map.magFilter = NearestFilter;
     map.format = RGBFormat;
-    const geometry = new BoxBufferGeometry(5, 5, 5);
+    const side = 5;
+    const geometry = new BoxBufferGeometry(side, side, side);
     const material = new MeshBasicMaterial({ map });
     this.mesh = new Mesh(geometry, material);
     this.add(this.mesh);
