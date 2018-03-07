@@ -1,18 +1,12 @@
 import { application } from 'ecs-three';
-import VideoPlane from './plane';
+// import { WebGLRenderer } from 'three';
+import VideoPlane from './VideoPlane';
 
-const start = ({ video }) => {
-  const settings = {
-    fov: 75,
-    width: 512,
-    height: 512,
-    near: 0.1,
-    far: 100,
-    containerId: 'webgl',
-  };
+const start = ({ video, settings }) => {
   application.init(settings);
-  application.camera.position.z = 10;
-  const videoPlane = new VideoPlane({ video });
+  // application.renderer.renderer = new WebGLRenderer({preserveDrawingBuffer: true});
+  application.camera.position.z = 1;
+  const videoPlane = new VideoPlane({video, settings});
   application.add(videoPlane);
 };
 

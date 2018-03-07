@@ -5,19 +5,22 @@ class Webcam extends Component {
     this.startWebcam();
   }
 
-  render = () => <video ref='video' style={{display: 'none'}} autoPlay/>
+  render () { return <video ref='video' style={{display: 'none'}} autoPlay/>; }
 
-  startWebcam() {
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      const constraints = { video: { width: this.props.side, height: this.props.side, facingMode: 'user' } };
-      navigator.mediaDevices.getUserMedia(constraints).then( stream => {
-        const video = this.getVideo();
-        video.src = window.URL.createObjectURL(stream);
-        video.play();
-      }).catch( function( error ) {
-        console.error( 'Unable to access the camera/webcam.', error );
-      });
+  async startWebcam() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
+    try {
+      const width = this.props.size.width;
+      const height = this.props.size.height;
+      const constraints = { video: { width, height, facingMode: 'user' } };
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      const video = this.getVideo();
+      video.src = window.URL.createObjectURL(stream);
+      video.play();
     }
+    catch(error) {
+      console.error('Unable to access the camera/webcam.', error);
+    };
   }
 
   getVideo() {
