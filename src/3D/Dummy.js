@@ -6,7 +6,7 @@ class Dummy extends Entity {
     super();
     this.components = [Rotate];
     this.add(mesh);
-    this.scale.setScalar(0.1);
+    this.scale.setScalar(0.3);
   }
 
   dispatchEvent() {}
