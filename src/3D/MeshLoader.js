@@ -4,7 +4,7 @@ class MeshLoader {
   constructor(meshData) {
     this.meshData = meshData;
     this.loader = new LegacyGLTFLoader();
-    this.loader.setCrossOrigin( true );
+    this.loader.setCrossOrigin('');
   }
 
   findGltfUrl() {
