@@ -1,19 +1,18 @@
 import { MeshBasicMaterial, VideoTexture, NearestFilter, RGBFormat, DoubleSide } from 'three';
 import { Entity } from 'ecs-three';
 import * as THREE from 'three';
-import Rotate from './components/rotate';
+
 const ScreenQuad = require('three-screen-quad')(THREE);
 
 class VideoPlane extends Entity {
   constructor({ video, settings }) {
     super();
     this.name = 'VideoPlane';
-    this.components = [Rotate];
     this.makeMesh(video, settings);
   }
 
   start() {
-    this.components.Rotate.speed = 0;
+    //this.components.Rotate.speed = 1;
   }
 
   makeMesh(video, { width, height }) {
@@ -29,9 +28,7 @@ class VideoPlane extends Entity {
     this.add(screenQuad);
   }
 
-  onClick() {
-
-  }
+  onClick() {}
 
   dispatchEvent() {}
 }

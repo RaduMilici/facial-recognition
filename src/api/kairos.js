@@ -14,4 +14,4 @@ const detect = (image, callback) => {
   });
 }
 
-export default detect;
+export { detect };

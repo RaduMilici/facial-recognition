@@ -9,7 +9,8 @@
     "react-scripts": "1.1.1",
     "request": "^2.83.0",
     "three": "^0.90.0",
-    "three-screen-quad": "^0.2.1"
+    "three-screen-quad": "^0.2.1",
+    "threejs-full-es6": "^5.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

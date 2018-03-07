@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { application } from 'ecs-three';
 import start3D from './3D/start3D';
+import Dummy from './3D/Dummy';
 import Webcam from './Webcam';
-import detect from './kairos';
+import { detect } from './api/kairos';
+import { load } from './api/poly';
+import MeshLoader from './3D/MeshLoader';
 import './App.css';
+import VideoPlane from './3D/VideoPlane';
 
 class App extends Component {
   constructor() {
     super();
-
     this.state = { result: null } ;
-
     this.settings = {
       fov: 75,
       width: 500,
@@ -31,6 +33,14 @@ class App extends Component {
   componentDidMount() {
     const video = this.refs.webcam.getVideo();
     start3D({ video, settings: this.settings });
+    this.loadModel('5vbJ5vildOq');
+  }
+
+  async loadModel(id) {
+    const meshData = await load(id);
+    const loader = new MeshLoader(meshData)
+    const mesh = await loader.load();
+    application.add(new Dummy(mesh));
   }
 
   takeScreenshot = () => {
