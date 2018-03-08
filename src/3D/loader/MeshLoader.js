@@ -34,7 +34,9 @@ class MeshLoader {
     const mtl = this.MTLLoader.parse(mtlData);
     this.OBJLoader.setMaterials(mtl);
 
-    return this.OBJLoader.parse(objData);
+    const mesh = this.OBJLoader.parse(objData)
+    console.log(mesh)
+    return mesh;
   }
 }
 

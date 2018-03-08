@@ -10,7 +10,7 @@ class App extends Component {
     super();
     this.state = { result: null } ;
     this.settings = {
-      fov: 75,
+      fov: 50,
       width: 500,
       height: 500,
       near: 0.1,

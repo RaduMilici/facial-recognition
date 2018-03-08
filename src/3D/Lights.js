@@ -1,4 +1,4 @@
-import { AmbientLight } from 'three';
+import { AmbientLight, DirectionalLight } from 'three';
 import { Entity } from 'ecs-three';
 
 class Lights extends Entity {
@@ -9,8 +9,12 @@ class Lights extends Entity {
   }
 
   addLights() {
-    const ambientLight = new AmbientLight(0xffffff, 1);
-    this.add(ambientLight);
+    const directionalLight = new DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(5, 5, 5);
+
+    const ambientLight = new AmbientLight(0x404040)
+
+    this.add(directionalLight, ambientLight);
   }
 }
 
