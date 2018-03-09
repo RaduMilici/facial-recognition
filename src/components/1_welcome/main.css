@@ -1,0 +1,18 @@
+.welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.welcome-child {
+    text-align: center;
+    width: 50%;
+    margin: 25px;
+}
+
+#welcome__start-button {
+
+}

@@ -1,43 +1,44 @@
-import { OBJLoader, MTLLoader } from 'threejs-full-es6';
-import { get } from 'request';
+import { OBJLoader, MTLLoader } from 'threejs-full-es6'
+import { get } from 'request'
 
 class MeshLoader {
   constructor(meshData) {
-    this.OBJLoader = new OBJLoader();
-    this.MTLLoader = new MTLLoader();
-    this.meshData = meshData;
+    this.OBJLoader = new OBJLoader()
+    this.MTLLoader = new MTLLoader()
+    this.meshData = meshData
   }
   getObj(url) {
     return new Promise(resolve => {
-      get({ url }, (error, response, body) => { resolve(body); });
-    });
+      get({ url }, (error, response, body) => {
+        resolve(body)
+      })
+    })
   }
 
   findFormat(format) {
-    const byType = f => f.formatType === format;
-    return this.meshData.formats.find(byType);
+    const byType = f => f.formatType === format
+    return this.meshData.formats.find(byType)
   }
 
   findMtl(format) {
-    const resource = format.resources.find(resource => resource.url.endsWith('.mtl'));
-    return resource ? resource.url : null;
+    const resource = format.resources.find(resource => resource.url.endsWith('.mtl'))
+    return resource ? resource.url : null
   }
 
   async load() {
-    const format = this.findFormat('OBJ');
-    const objUrl = format.root.url;
-    const matUrl = this.findMtl(format);
+    const format = this.findFormat('OBJ')
+    const objUrl = format.root.url
+    const matUrl = this.findMtl(format)
 
-    const objData = await this.getObj(objUrl);
-    const mtlData = await this.getObj(matUrl);
+    const objData = await this.getObj(objUrl)
+    const mtlData = await this.getObj(matUrl)
 
-    const mtl = this.MTLLoader.parse(mtlData);
-    this.OBJLoader.setMaterials(mtl);
+    const mtl = this.MTLLoader.parse(mtlData)
+    this.OBJLoader.setMaterials(mtl)
 
     const mesh = this.OBJLoader.parse(objData)
-    console.log(mesh)
-    return mesh;
+    return mesh
   }
 }
 
-export default MeshLoader;
+export default MeshLoader

@@ -1,5 +1,10 @@
 html, body {
   margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.app {
+  display: flex;
 }
 
 #kairos {
@@ -7,8 +12,27 @@ html, body {
   left: 0;
 }
 
-#webgl, #result {
-  display: inline-block;
-  vertical-align: top;
+#webgl {
+  z-index: -1;
+  position: fixed;
 }
 
+button {
+  background: #262830;
+  background-image: linear-gradient(to bottom, #262830, #2980b9);
+  border-radius: 28px;
+  color: #52d3fa;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  outline: 0;
+  transition: all .2s ease-in-out;
+}
+
+button:hover {
+  background: #262830;
+  background-image: linear-gradient(to bottom, #262830, #3498db);
+  text-decoration: none;
+  cursor: pointer;
+  transform: scale(1.2);
+}
