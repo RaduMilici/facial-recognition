@@ -18,10 +18,13 @@ const tweenCamera = name => {
 }
 
 const tweenLookAt = name => {
+  console.log(application.camera.target, positions.camera[name].lookAt, positions.camera)
   new Tween(application.camera.target)
     .to(positions.camera[name].lookAt, time)
     .easing(easing)
-    .onUpdate(() => application.camera.lookAt(application.camera.target))
+    .onUpdate(() => {
+      application.camera.lookAt(application.camera.target)
+    })
     .start()
 }
 

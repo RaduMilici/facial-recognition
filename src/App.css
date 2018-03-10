@@ -36,3 +36,10 @@ button:hover {
   cursor: pointer;
   transform: scale(1.2);
 }
+
+.nav-buttons {
+  bottom: 0;
+  right: 0;
+  padding: 25px;
+  position: absolute;
+}

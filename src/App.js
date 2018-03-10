@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import start3D from './3D/start3D'
 import { application } from 'ecs-three'
 import { detect } from './api/kairos'
-import { goTo } from './3D/cameraControl'
+import navTo from './navMap'
 import './App.css'
+import './Description.css'
 import Room from './3D/Room'
 import Webcam from './Webcam'
 import Main from './components/1_welcome/main'
@@ -34,8 +35,6 @@ class App extends Component {
     const video = this.refs.webcam.getVideo()
     const room = new Room(video)
     application.add(room)
-
-    //goTo('videoPlane')
     //this.setSlide(1)
   }
 
@@ -54,18 +53,22 @@ class App extends Component {
 
   currentSlide = () => {
     const Slide = this.state.slides[this.state.index]
-    return Slide ? <Slide nextSlide={this.nextSlide}/> : null
+    return Slide ? <Slide nextSlide={this.turnSlide} /> : null
   }
 
-  nextSlide = () => {
-    this.setState(prevState => {
-      return { index: prevState.index + 1 }
-    })
+  turnSlide = num => {
+    const index = this.state.index + num
+    this.setSlide(index)
   }
 
   setSlide = index => {
-    this.setState({ index })
+    if (this.isValidIndex(index)) {
+      navTo(index)
+      this.setState({ index })
+    }
   }
+
+  isValidIndex = index => index >= 0 && index < this.state.slides.length
 
   render() {
     return (
@@ -73,6 +76,15 @@ class App extends Component {
         <div id="webgl" />
         {this.currentSlide()}
         <Webcam size={this.getSize()} ref="webcam" />
+        <div className="nav-buttons">
+          {this.isValidIndex(this.state.index - 1) ? (
+            <button onClick={() => this.turnSlide(-1)}>←</button>
+          ) : null}
+
+          {this.isValidIndex(this.state.index + 1) ? (
+            <button onClick={() => this.turnSlide(1)}>→</button>
+          ) : null}
+        </div>
       </div>
     )
   }

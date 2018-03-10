@@ -1,0 +1,21 @@
+.description {
+    color: #52d3fa;
+    background-color: #262830;
+    padding: 25px;
+    border-radius: 15px;
+    border: 2px solid #1f2127;
+    box-sizing: border-box;
+}
+
+.description h1 {
+    font-size: 50px;
+}
+
+.description li {
+    margin: 25px 0;
+    font-size: 25px;
+}
+
+.description__title {
+    text-align: center;
+}

@@ -12,14 +12,9 @@ class Main extends Component {
     return (
       <div className="welcome">
         <div className="welcome-child">
-          <div className='description'>
+          <div className="description">
             <h1>facial recognition with KAIROS</h1>
           </div>
-        </div>
-        <div className="welcome-child">
-          <button onClick={this.tweenToMonitor} id="welcome__start-button">
-            START
-          </button>
         </div>
       </div>
     )
