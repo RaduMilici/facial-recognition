@@ -1,42 +1,38 @@
 import React, { Component } from 'react'
-import LeftContainer from '../../Containers/LeftContainer'
-import { takeScreenshot } from '../../../api/kairos'
+import Feature from '../Feature'
+import { detect } from '../../../api/kairos'
+import { frameFaces } from '../../../util/canvas'
+import { takeScreenshot } from '../../../util/canvas'
 
 class Detection extends Component {
   constructor() {
     super()
     this.state = {
-      result: null,
       dataUrl: null,
+      result: null,
     }
   }
 
   detectFace = () => {
-    takeScreenshot(({ result, dataUrl }) => {
-      console.log(dataUrl)
-      this.setState({ dataUrl, result: JSON.stringify(result, null, 2) })
-    })
+    const dataUrl = takeScreenshot()
+    const callback = async ({ result }) => {
+      const framed = await frameFaces({ result, dataUrl })
+      this.setState({ dataUrl: framed, result: JSON.stringify(result, null, 2) })
+    }
+    detect({ dataUrl, callback })
   }
+
+  reset = () => this.setState({ dataUrl: null, result: null })
 
   render() {
     return (
-      <div className="twin-containers">
-        <LeftContainer>
-          <div className="description">
-            <h1 className="description__title">Face detection</h1>
-            <div className="result">
-              <pre>{this.state.result}</pre>
-            </div>
-            <div className="description__button-container">
-              <button onClick={this.detectFace}>Detect</button>
-            </div>
-          </div>
-        </LeftContainer>
-
-        <LeftContainer>
-          <img src={this.state.dataUrl} alt="dataUrl" />
-        </LeftContainer>
-      </div>
+      <Feature
+        title="Face detection"
+        onClick={this.detectFace}
+        reset={this.reset}
+        dataUrl={this.state.dataUrl}
+        result={this.state.result}
+      />
     )
   }
 }

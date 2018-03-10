@@ -5,6 +5,10 @@
     border-radius: 15px;
     border: 5px solid #52d3fa;
     box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .description h1 {
@@ -25,7 +29,8 @@
 
 .result {
     max-height: 500px;
-    overflow-x: hidden;
+    width: 100%;
+    overflow-x: auto;
     overflow-y: auto;
     margin: 20px 0;
 }

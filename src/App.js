@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import start3D from './3D/start3D'
 import { application } from 'ecs-three'
-import navTo from './navMap'
+import navTo from './util/navMap'
 import './App.css'
 import './Description.css'
 import Room from './3D/Room'
-import Webcam from './Webcam'
+import Webcam from './util/Webcam'
 import slides from './components/slides'
-import { setVideo as setVideoKairos } from './api/kairos'
+import { setVideo as setVideoUtil } from './util/canvas'
 
 class App extends Component {
   constructor() {
@@ -35,7 +35,7 @@ class App extends Component {
     const video = this.refs.webcam.getVideo()
     this.setState({ slides, video }, () => {
       this.setSlide(this.state.startAt)
-      setVideoKairos(video)
+      setVideoUtil(video)
       const room = new Room(video)
       application.add(room)
     })

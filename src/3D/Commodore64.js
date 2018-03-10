@@ -1,5 +1,5 @@
 import { Entity } from 'ecs-three'
-import ids from '../meshIds'
+import ids from '../util/meshIds'
 import loadMesh from './loader/load'
 import VideoPlane from './VideoPlane'
 

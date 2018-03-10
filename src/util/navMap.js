@@ -1,4 +1,4 @@
-import { goTo } from './3D/cameraControl'
+import { goTo } from '../3D/cameraControl'
 
 const navMap = number => {
   switch (number) {
@@ -9,11 +9,9 @@ const navMap = number => {
     case 2:
       return 'howItWorks'
     case 3:
-    case 4:
-    case 5:
       return 'videoPlane'
     default:
-      return null
+      return 'videoPlane'
   }
 }
 
