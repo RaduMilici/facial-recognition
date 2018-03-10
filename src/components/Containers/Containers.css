@@ -1,11 +1,17 @@
-.left-container {
+.twin-containers {
     display: flex;
     width: 100vw;
     height: 100vh;
+}
+
+.left-container {
+    display: flex;
+    width: 50%;
+    height: 100%;
     align-items: center;
 }
 
 .left-container__child {
-    width: 50%;
+    width: 100%;
 }
 

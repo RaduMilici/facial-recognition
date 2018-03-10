@@ -3,24 +3,31 @@ import { Tween, Easing } from '@tweenjs/tween.js/src/Tween'
 import { application } from 'ecs-three'
 
 const time = 2000
+const debugTime = 100
 const easing = Easing.Quadratic.Out
 
-const goTo = name => {
-  tweenCamera(name)
-  tweenLookAt(name)
+const goTo = (name, debug) => {
+  const selected = getCameraPos(name)
+  if (selected) {
+    tweenCamera(selected, debug)
+    tweenLookAt(selected, debug)
+  } else {
+    console.error(`Invalid position name: ${name}`)
+  }
 }
 
-const tweenCamera = name => {
+const getCameraPos = name => (positions.camera[name] ? positions.camera[name] : null)
+
+const tweenCamera = (selected, debug) => {
   new Tween(application.camera.position)
-    .to(positions.camera[name].pos, time)
+    .to(selected.pos, debug ? debugTime : time)
     .easing(easing)
     .start()
 }
 
-const tweenLookAt = name => {
-  console.log(application.camera.target, positions.camera[name].lookAt, positions.camera)
+const tweenLookAt = (selected, debug) => {
   new Tween(application.camera.target)
-    .to(positions.camera[name].lookAt, time)
+    .to(selected.lookAt, debug ? debugTime : time)
     .easing(easing)
     .onUpdate(() => {
       application.camera.lookAt(application.camera.target)

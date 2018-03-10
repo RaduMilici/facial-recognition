@@ -1,10 +1,14 @@
 .welcome {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
+}
+
+.welcome img {
+    width: 500px;
 }
 
 .welcome-child {
@@ -13,6 +17,3 @@
     margin: 25px;
 }
 
-#welcome__start-button {
-
-}

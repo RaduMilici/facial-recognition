@@ -1,41 +1,44 @@
 import React, { Component } from 'react'
 import start3D from './3D/start3D'
 import { application } from 'ecs-three'
-import { detect } from './api/kairos'
 import navTo from './navMap'
 import './App.css'
 import './Description.css'
 import Room from './3D/Room'
 import Webcam from './Webcam'
-import Main from './components/1_welcome/main'
-import BackStory from './components/2_Backstory/backstory'
+import slides from './components/slides'
+import { setVideo as setVideoKairos } from './api/kairos'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
       result: null,
-      slides: [],
+      slides,
+      video: null,
       index: 0,
+      startAt: slides.length - 1,
+      debug: false,
     }
     this.settings = {
       fov: 70,
       width: window.innerWidth,
       height: window.innerHeight,
       near: 0.1,
-      far: 100,
+      far: 10,
       containerId: 'webgl',
     }
   }
 
   componentDidMount() {
     start3D({ settings: this.settings })
-    const slides = [Main, BackStory]
-    this.setState({ slides })
     const video = this.refs.webcam.getVideo()
-    const room = new Room(video)
-    application.add(room)
-    //this.setSlide(1)
+    this.setState({ slides, video }, () => {
+      this.setSlide(this.state.startAt)
+      setVideoKairos(video)
+      const room = new Room(video)
+      application.add(room)
+    })
   }
 
   getSize() {
@@ -45,15 +48,9 @@ class App extends Component {
     }
   }
 
-  takeScreenshot = () => {
-    const dataUrl = application.renderer.screenshot()
-    const callback = result => this.setState({ result })
-    detect(dataUrl, callback)
-  }
-
   currentSlide = () => {
     const Slide = this.state.slides[this.state.index]
-    return Slide ? <Slide nextSlide={this.turnSlide} /> : null
+    return Slide ? <Slide video={this.state.video} /> : null
   }
 
   turnSlide = num => {
@@ -63,7 +60,7 @@ class App extends Component {
 
   setSlide = index => {
     if (this.isValidIndex(index)) {
-      navTo(index)
+      navTo(index, this.state.debug)
       this.setState({ index })
     }
   }
@@ -74,8 +71,9 @@ class App extends Component {
     return (
       <div className="app">
         <div id="webgl" />
-        {this.currentSlide()}
-        <Webcam size={this.getSize()} ref="webcam" />
+
+        <div className="twin-containers">{this.currentSlide()}</div>
+
         <div className="nav-buttons">
           {this.isValidIndex(this.state.index - 1) ? (
             <button onClick={() => this.turnSlide(-1)}>←</button>
@@ -85,6 +83,7 @@ class App extends Component {
             <button onClick={() => this.turnSlide(1)}>→</button>
           ) : null}
         </div>
+        <Webcam size={this.getSize()} ref="webcam" />
       </div>
     )
   }

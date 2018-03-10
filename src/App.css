@@ -7,11 +7,6 @@ html, body {
   display: flex;
 }
 
-#kairos {
-  position: absolute;
-  left: 0;
-}
-
 #webgl {
   z-index: -1;
   position: fixed;
@@ -42,4 +37,17 @@ button:hover {
   right: 0;
   padding: 25px;
   position: absolute;
+}
+
+.nav-buttons button {
+  margin: 5px;
+}
+
+.image-center {
+  display: flex;
+  justify-content: center;
+}
+
+.image-medium {
+  height: 300px;
 }

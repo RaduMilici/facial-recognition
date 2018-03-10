@@ -3,7 +3,7 @@
     background-color: #262830;
     padding: 25px;
     border-radius: 15px;
-    border: 2px solid #1f2127;
+    border: 5px solid #52d3fa;
     box-sizing: border-box;
 }
 
@@ -11,11 +11,25 @@
     font-size: 50px;
 }
 
-.description li {
+.description li,
+.description p,
+.description q {
     margin: 25px 0;
     font-size: 25px;
 }
 
-.description__title {
+.description__title,
+.description__button-container {
     text-align: center;
+}
+
+.result {
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 20px 0;
+}
+
+.result pre {
+    font-size: 20px;
 }

@@ -6,6 +6,14 @@ const positions = {
       pos: new Vector3(1.5, 0.5, 1.5),
       lookAt: new Vector3(0, 0, 0.2),
     },
+    backstory: {
+      pos: new Vector3(1, 0.5, 1),
+      lookAt: new Vector3(0.2, 0.2, 0),
+    },
+    howItWorks: {
+      pos: new Vector3(0.8, 0.5, 0),
+      lookAt: new Vector3(0.4, 0.3, -0.6),
+    },
     videoPlane: {
       pos: new Vector3(0.65, 0.42, -0.3),
       lookAt: new Vector3(0.65, 0.42, -0.87),

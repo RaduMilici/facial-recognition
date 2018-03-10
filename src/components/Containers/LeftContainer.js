@@ -1,5 +1,5 @@
 import React from 'react'
-import './LeftContainer.css'
+import './Containers.css'
 
 const LeftContainer = ({ children }) => {
   return (
