@@ -17,8 +17,8 @@ class App extends Component {
       slides,
       video: null,
       index: 0,
-      startAt: slides.length - 1,
-      debug: false,
+      startAt: 0,
+      debug: true,
     }
     this.settings = {
       fov: 70,
@@ -33,7 +33,10 @@ class App extends Component {
   componentDidMount() {
     start3D({ settings: this.settings })
     const video = this.refs.webcam.getVideo()
-    this.setState({ slides, video }, () => {
+
+    const startAt = this.state.debug ? this.state.slides.length - 1 : 0
+
+    this.setState({ slides, video, startAt }, () => {
       this.setSlide(this.state.startAt)
       setVideoUtil(video)
       const room = new Room(video)

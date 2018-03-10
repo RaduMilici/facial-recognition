@@ -11,7 +11,7 @@ const positions = {
       lookAt: new Vector3(0.2, 0.2, 0),
     },
     howItWorks: {
-      pos: new Vector3(0.8, 0.5, 0),
+      pos: new Vector3(0.8, 0.5, 0.5),
       lookAt: new Vector3(0.4, 0.3, -0.6),
     },
     videoPlane: {
