@@ -16,7 +16,7 @@ class PostMedia extends Component {
     const callback = async ({ result }) => {
       this.setState({ result: JSON.stringify(result, null, 2) })
     }
-    postMedia({ dataUrl: imgUrls.happy, callback })
+    postMedia({ dataUrl: this.state.dataUrl, callback })
   }
 
   changePicture = ({ target }) => {
@@ -52,6 +52,6 @@ class PostMedia extends Component {
       </div>
     )
   }
-} //0a1ae49f91365cca21861d6a
+}
 
 export default PostMedia

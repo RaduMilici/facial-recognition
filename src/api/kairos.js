@@ -37,14 +37,27 @@ const postMedia = ({ dataUrl, callback }) => {
   makeCall({ url, dataUrl, callback })
 }
 
-const makeCall = ({ url, dataUrl, subject_id, gallery_name, callback, resultProp }) => {
+const getMedia = ({ id, callback }) => {
+  const url = `${postMediaUrl}?id=${id}`
+  makeCall({ call: 'get', url, callback })
+}
+
+const makeCall = ({
+  call = 'post',
+  url,
+  dataUrl,
+  subject_id,
+  gallery_name,
+  callback,
+  resultProp,
+}) => {
   const body = { image: dataUrl, subject_id, gallery_name }
   const options = { url, headers, json: true, body }
   const apiCallback = ({ result }) => {
     const transaction = get(result, resultProp, result)
     callback({ result: transaction })
   }
-  api.post({ options, callback: apiCallback })
+  api[call]({ options, callback: apiCallback })
 }
 
-export { detect, enroll, recognize, verify, postMedia }
+export { detect, enroll, recognize, verify, postMedia, getMedia }
