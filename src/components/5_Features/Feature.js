@@ -3,16 +3,12 @@ import LeftContainer from '../Containers/LeftContainer'
 import './Feature.css'
 
 class Feature extends Component {
-  constructor() {
-    super()
-  }
-
   buttonText() {
-    return this.props.dataUrl ? 'Reset' : 'Detect'
+    return this.props.reset !== false && this.props.dataUrl ? 'Reset' : 'Detect'
   }
 
   onClick = () => {
-    this.props.dataUrl ? this.props.reset() : this.props.onClick()
+    this.props.reset !== false && this.props.dataUrl ? this.props.reset() : this.props.onClick()
   }
 
   render() {
@@ -37,6 +33,7 @@ class Feature extends Component {
               <div className="image-center">
                 <img className="image-large" src={this.props.dataUrl} alt="dataUrl" />
               </div>
+              {this.props.leftContent}
             </div>
           ) : null}
         </LeftContainer>

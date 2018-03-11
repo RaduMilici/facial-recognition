@@ -6,6 +6,7 @@ const detectUrl = `${rootUrl}/detect`
 const enrollUrl = `${rootUrl}/enroll`
 const recognizeUrl = `${rootUrl}/recognize`
 const verifyUrl = `${rootUrl}/verify`
+const postMediaUrl = `${rootUrl}/v2/media`
 const headers = {
   app_id: '5623987f',
   app_key: '6c40ec661f881b50a65b5700e91ba3f1',
@@ -31,6 +32,11 @@ const verify = ({ dataUrl, subject_id, gallery_name, callback }) => {
   makeCall({ url: verifyUrl, dataUrl, subject_id, gallery_name, callback, resultProp })
 }
 
+const postMedia = ({ dataUrl, callback }) => {
+  const url = `${postMediaUrl}?source=${dataUrl}`
+  makeCall({ url, dataUrl, callback })
+}
+
 const makeCall = ({ url, dataUrl, subject_id, gallery_name, callback, resultProp }) => {
   const body = { image: dataUrl, subject_id, gallery_name }
   const options = { url, headers, json: true, body }
@@ -41,4 +47,4 @@ const makeCall = ({ url, dataUrl, subject_id, gallery_name, callback, resultProp
   api.post({ options, callback: apiCallback })
 }
 
-export { detect, enroll, recognize, verify }
+export { detect, enroll, recognize, verify, postMedia }
