@@ -33,8 +33,9 @@ class App extends Component {
       this.setSlide(this.state.startAt)
       setVideoUtil(video)
       const room = new Room(video)
+      room.videoPlane.position.z = 10000
       application.add(room)
-      application._special = { room };
+      application._special = { room }
     })
   }
 

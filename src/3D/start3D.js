@@ -2,7 +2,7 @@ import { Vector3 } from 'three'
 import { application } from 'ecs-three'
 import positions from './positions'
 import Lights from './Lights'
-const sceneLights = new Lights();
+const sceneLights = new Lights()
 
 const start = ({ settings }) => {
   application.init(settings)

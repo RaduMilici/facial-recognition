@@ -16,7 +16,7 @@ const navMap = number => {
     case 14:
       return { name: 'kinect', time: 2000 }
     case 16:
-      return { name: 'welcome', time: 3000  }
+      return { name: 'welcome', time: 3000 }
     default:
       return { name: 'videoPlane' }
   }
