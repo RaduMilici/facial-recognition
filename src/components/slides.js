@@ -8,7 +8,7 @@ import Enroll from './5_Features/2_enroll/Enroll'
 import Recognize from './5_Features/3_recognize/Recognize'
 import Verify from './5_Features/4_verify/Verify'
 import PostMedia from './5_Features/5_Media/1_PostMedia'
-import GetMedia from './5_Features/5_Media/2_GetMedia'
+import Kinekt from './6_kinect/Kinect'
 
 export default [
   Welcome,
@@ -21,5 +21,5 @@ export default [
   Recognize,
   Verify,
   PostMedia,
-  GetMedia
+  Kinekt,
 ]

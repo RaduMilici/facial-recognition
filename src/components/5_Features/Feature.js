@@ -17,9 +17,12 @@ class Feature extends Component {
         <LeftContainer>
           <div className="description">
             <h1 className="description__title">{this.props.title}</h1>
-            <div className="result">
-              <pre>{this.props.result}</pre>
-            </div>
+            {this.props.hideResult ? null : (
+              <div className="result">
+                <pre>{this.props.result}</pre>
+              </div>
+            )}
+
             {this.props.children}
             <div className="description__button-container">
               <button onClick={this.onClick}>{this.buttonText()}</button>

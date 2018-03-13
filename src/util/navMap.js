@@ -3,22 +3,24 @@ import { goTo } from '../3D/cameraControl'
 const navMap = number => {
   switch (number) {
     case 0:
-      return 'welcome'
+      return { name: 'welcome' }
     case 1:
-      return 'backstory'
+      return { name: 'backstory' }
     case 2:
-      return 'howItWorks'
+      return { name: 'howItWorks' }
     case 3:
-      return 'videoPlane'
+      return { name: 'videoPlane' }
+    case 10:
+      return { name: 'kinect', time: 2000 }
     default:
-      return 'videoPlane'
+      return { name: 'videoPlane' }
   }
 }
 
 const navTo = (slideNumber, debug) => {
-  const destination = navMap(slideNumber)
-  if (destination) {
-    goTo(destination, debug)
+  const { name, time } = navMap(slideNumber)
+  if (name) {
+    goTo(name, debug, time)
   }
 }
 

@@ -4,13 +4,17 @@ import { application } from 'ecs-three'
 
 const time = 2000
 const debugTime = 100
-const easing = Easing.Quadratic.Out
+const easing = Easing.Quadratic.InOut
 
-const goTo = (name, debug) => {
+const goTo = (name, debug, customTime) => {
   const selected = getCameraPos(name)
   if (selected) {
-    tweenCamera(selected, debug)
-    tweenLookAt(selected, debug)
+    let selectedTime = time
+    if (debug) selectedTime = debugTime
+    if (!debug && customTime) selectedTime = customTime
+
+    tweenCamera(selected, selectedTime)
+    tweenLookAt(selected, selectedTime)
   } else {
     console.error(`Invalid position name: ${name}`)
   }
@@ -18,16 +22,16 @@ const goTo = (name, debug) => {
 
 const getCameraPos = name => (positions.camera[name] ? positions.camera[name] : null)
 
-const tweenCamera = (selected, debug) => {
+const tweenCamera = (selected, selectedTime) => {
   new Tween(application.camera.position)
-    .to(selected.pos, debug ? debugTime : time)
+    .to(selected.pos, selectedTime)
     .easing(easing)
     .start()
 }
 
-const tweenLookAt = (selected, debug) => {
+const tweenLookAt = (selected, selectedTime) => {
   new Tween(application.camera.target)
-    .to(selected.lookAt, debug ? debugTime : time)
+    .to(selected.lookAt, selectedTime)
     .easing(easing)
     .onUpdate(() => {
       application.camera.lookAt(application.camera.target)

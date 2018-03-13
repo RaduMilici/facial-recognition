@@ -18,7 +18,7 @@ const api = {
         console.error(error)
       }
     })
-  }
+  },
 }
 
 export default api

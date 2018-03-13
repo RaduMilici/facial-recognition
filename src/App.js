@@ -8,6 +8,7 @@ import Room from './3D/Room'
 import Webcam from './util/Webcam'
 import slides from './components/slides'
 import { setVideo as setVideoUtil } from './util/canvas'
+import settings3D from './3D/initSettings'
 
 class App extends Component {
   constructor() {
@@ -17,24 +18,16 @@ class App extends Component {
       slides,
       video: null,
       index: 0,
-      startAt: 0,
-      debug: true,
-    }
-    this.settings = {
-      fov: 70,
-      width: window.innerWidth,
-      height: window.innerHeight,
-      near: 0.1,
-      far: 10,
-      containerId: 'webgl',
+      startAt: 8,
+      debug: false,
     }
   }
 
   componentDidMount() {
-    start3D({ settings: this.settings })
+    start3D({ settings: settings3D })
     const video = this.refs.webcam.getVideo()
 
-    const startAt = this.state.debug ? this.state.slides.length - 1 : 0
+    const startAt = this.state.debug ? this.state.slides.length - 1 : this.state.startAt
 
     this.setState({ slides, video, startAt }, () => {
       this.setSlide(this.state.startAt)

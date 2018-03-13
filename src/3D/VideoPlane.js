@@ -12,8 +12,6 @@ class VideoPlane extends Entity {
     this.makeScreenQuad()
   }
 
-  start() {}
-
   makeMap() {
     const map = new VideoTexture(this.video)
     map.minFilter = NearestFilter

@@ -18,6 +18,10 @@ const positions = {
       pos: new Vector3(0.65, 0.42, -0.3),
       lookAt: new Vector3(0.65, 0.42, -0.87),
     },
+    kinect: {
+      pos: new Vector3(0.65, 6, 2),
+      lookAt: new Vector3(0.65, 6, -0.87),
+    },
   },
   videoPlane: {
     pos: new Vector3(0.97, 0.42, -0.87),

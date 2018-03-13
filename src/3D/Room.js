@@ -4,6 +4,7 @@ import loadMesh from './loader/load'
 import VideoPlane from './VideoPlane'
 import TweenUpdate from './components/TweenUpdate'
 import positions from './positions'
+import KinectEntity from './Kinect'
 
 class Room extends Entity {
   constructor(video) {
@@ -19,6 +20,8 @@ class Room extends Entity {
   async loadMesh() {
     const mesh = await loadMesh(ids.room)
     this.add(mesh)
+    this.add(new KinectEntity())
+    this.add(new KinectEntity())
   }
 }
 

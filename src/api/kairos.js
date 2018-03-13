@@ -38,7 +38,7 @@ const postMedia = ({ dataUrl, callback }) => {
 }
 
 const getMedia = ({ id, callback }) => {
-  const url = `${postMediaUrl}?id=${id}`
+  const url = `${postMediaUrl}/${id}`
   makeCall({ call: 'get', url, callback })
 }
 
