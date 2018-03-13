@@ -18,8 +18,8 @@ class App extends Component {
       slides,
       video: null,
       index: 0,
-      startAt: 8,
-      debug: false,
+      startAt: 0,
+      debug: true,
     }
   }
 

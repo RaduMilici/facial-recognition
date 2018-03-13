@@ -3,14 +3,18 @@ import { goTo } from '../3D/cameraControl'
 const navMap = number => {
   switch (number) {
     case 0:
-      return { name: 'welcome' }
     case 1:
-      return { name: 'backstory' }
     case 2:
-      return { name: 'howItWorks' }
+    case 16:
+      return { name: 'welcome' }
     case 3:
+      return { name: 'backstory' }
+    case 4:
+      return { name: 'howItWorks' }
+    case 5:
+    case 15:
       return { name: 'videoPlane' }
-    case 10:
+    case 14:
       return { name: 'kinect', time: 2000 }
     default:
       return { name: 'videoPlane' }

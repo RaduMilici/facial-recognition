@@ -13,7 +13,7 @@ class Feature extends Component {
 
   render() {
     return (
-      <div className=" feature twin-containers">
+      <div className="feature twin-containers">
         <LeftContainer>
           <div className="description">
             <h1 className="description__title">{this.props.title}</h1>

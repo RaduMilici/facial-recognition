@@ -15,6 +15,10 @@
     font-size: 50px;
 }
 
+.description .description__title--small {
+    font-size: 35px;
+}
+
 .description li,
 .description p,
 .description q {
@@ -26,6 +30,7 @@
 .description__button-container {
     text-align: center;
 }
+
 
 .result {
     max-height: 500px;
