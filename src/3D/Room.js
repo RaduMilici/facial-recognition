@@ -11,10 +11,10 @@ class Room extends Entity {
     super()
     this.components = [TweenUpdate]
     this.loadMesh()
-    const videoPlane = new VideoPlane({ video })
-    videoPlane.position.copy(positions.videoPlane.pos)
-    videoPlane.scale.copy(positions.videoPlane.scale)
-    this.add(videoPlane)
+    this.videoPlane = new VideoPlane({ video })
+    this.videoPlane.position.copy(positions.videoPlane.pos)
+    this.videoPlane.scale.copy(positions.videoPlane.scale)
+    this.add(this.videoPlane)
   }
 
   async loadMesh() {

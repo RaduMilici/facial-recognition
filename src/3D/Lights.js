@@ -9,12 +9,12 @@ class Lights extends Entity {
   }
 
   addLights() {
-    const directionalLight = new DirectionalLight(0xffffff, 1)
-    directionalLight.position.set(5, 5, 5)
+    this.directionalLight = new DirectionalLight(0xffffff, 1)
+    this.directionalLight.position.set(5, 5, 5)
 
-    const ambientLight = new AmbientLight(0x404040, 1)
+    this.ambientLight = new AmbientLight(0x404040, 1)
 
-    this.add(directionalLight, ambientLight)
+    this.add(this.directionalLight, this.ambientLight)
   }
 }
 

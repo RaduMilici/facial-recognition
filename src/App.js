@@ -19,7 +19,7 @@ class App extends Component {
       video: null,
       index: 0,
       startAt: 0,
-      debug: true,
+      debug: false,
     }
   }
 
@@ -34,6 +34,7 @@ class App extends Component {
       setVideoUtil(video)
       const room = new Room(video)
       application.add(room)
+      application._special = { room };
     })
   }
 
